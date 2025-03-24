@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.img_div {
+    padding: 2rem 0;
+    display: flex;
+    overflow-x: hidden;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img_div img {
+    max-width: 200px;
+    height: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.slider{
+    display: flex;
+    gap: 10px;
+}
+
+.img_div img:hover {
+    transform: scale(1.05);
+}
+
+.carting {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.carting img {
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carting div {
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.carting div:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.fa-caret-right {
+    position: absolute;
+    top: 50%;
+    color: rgb(23, 221, 23);
+    right: 1rem;
+    font-size: 3rem;
+    z-index: 5;
+}
+
+.fa-caret-left {
+    position: absolute;
+    left: 1rem;
+    color: rgb(37, 218, 37);
+    font-size: 3rem;
+    z-index: 5;
+}
+
+div .show_text{
+    position: absolute;
+    opacity: 0;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: rgb(0,0,0,0.5);
+    color: white;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    transition: .3 ease;
+}
+
+div .show_text:hover{
+    opacity: 100%;
+}
+
+.button{
+    position: fixed;
+    right:2rem;
+    bottom: 2rem;
+    z-index: 5;
+    background: #000;
+    color: white;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    
+      
+     
+}
+.button:hover {
+    background-color: #0056b3;
+  }
+  

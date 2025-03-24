@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: red;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .left-arrow { left: 1rem; }
+        .right-arrow { right: 1rem; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="relative h-[80vh] bg-cover bg-center" style="background-image: url('https://www.aiche.org/sites/default/files/images/conference/lead/foodie24-shutterstock_467823857.jpeg');">
+        <div class="bg-black bg-opacity-50 h-full flex flex-col">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-white text-3xl font-bold">FoodHub</div>
+                <ul class="flex space-x-6 text-white">
+                    <li><a href="#" class="hover:underline">Home</a></li>
+                    <li><a href="#" class="hover:underline">Recipes</a></li>
+                    <li><a href="#" class="hover:underline">Pages</a></li>
+                    <li><a href="#" class="hover:underline">Blog</a></li>
+                    <li><a href="#" class="hover:underline">Shop</a></li>
+                    <li><a href="#" class="hover:underline">Shortcodes</a></li>
+                    <li><a href="#" class="hover:underline"><i class="fas fa-search"></i></a></li>
+                    <li><a href="#" class="hover:underline"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <a href="#" class="bg-white text-black px-4 py-2 rounded-full">Submit Recipe</a>
+            </nav>
+            <div class="container mx-auto px-6 flex flex-col h-full items-center justify-center text-center">
+                <h1 class="text-white text-4xl md:text-5xl font-bold mb-4">It is even better than an expensive cookery book</h1>
+                <p class="text-white text-lg mb-8">Learn how to make your favorite restaurant's dishes</p>
+                <div class="flex items-center bg-white rounded-full overflow-hidden shadow-lg border">
+                    <input type="text" placeholder="I want to make..." class="px-4 py-2 w-72 text-gray-700 focus:outline-none border-r searchinp">
+                    <button class="px-4 py-2 text-white bg-transparent focus:outline-none">
+                        <i class="fas fa-search searchicon text-green-500"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Image Slider -->
+    <div class="relative flex items-center justify-center mt-10 img_div">
+        <i class="fa-solid fa-caret-left arrow-btn left-arrow" onclick="previous()"></i>
+      
+            <div id="slider" class="slider w-full flex items-center justify-center">
+            
+            </div>
+     
+        <i class="fa-solid fa-caret-right arrow-btn right-arrow" onclick="next()"></i>
+    </div>
+
+    <!-- Recipe Categories -->
+    <section class="py-16 bg-white text-center">
+        <h2 class="text-3xl font-bold mb-4">Recipes By Category</h2>
+        <div class="category flex items-center gap-5 justify-center flex-wrap">
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 active:scale-95 transition">All</button>
+            <button class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 active:scale-95 transition">Vegetarian</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 active:scale-95 transition">Non-Vegetarian</button>
+            <button class="px-4 py-2 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 active:scale-95 transition">Main Course</button>
+            <button class="px-4 py-2 bg-yellow-500 text-black rounded-lg shadow-md hover:bg-yellow-600 active:scale-95 transition">Side Dish</button>
+            <button class="px-4 py-2 bg-pink-500 text-white rounded-lg shadow-md hover:bg-pink-600 active:scale-95 transition">Dessert</button>
+            <button class="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 active:scale-95 transition">Appetizer</button>
+            <button class="px-4 py-2 bg-lime-500 text-black rounded-lg shadow-md hover:bg-lime-600 active:scale-95 transition">Salad</button>
+            <button class="px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 active:scale-95 transition">Breakfast</button>
+            <button class="px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 active:scale-95 transition">Soup</button>
+            <button class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 active:scale-95 transition">Beverage</button>
+            <button class="px-4 py-2 bg-cyan-500 text-white rounded-lg shadow-md hover:bg-cyan-600 active:scale-95 transition">Snack</button>
+        </div>
+    </section>
+
+    <!-- Recipe Cart -->
+    <div class="carting relative flex items-center flex-wrap gap-5 justify-center"> </div>
+    <button class="button">Load more</button>
+
+    <!-- JavaScript -->
+    <script src="demo.js">
+    
+    </script>
+
+</body>
+</html>
