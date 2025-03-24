@@ -1,9 +1,12 @@
 let image_scroll = document.getElementById('slider');
 let images = [], 
-    method = 'https://api.spoonacular.com/recipes/random?apiKey=3618575b5d134e6ea595b94c1c5761fd&number=20',
-    flag=true;
+    api_key = 'bd2be8aeffcb46749e500a860968114e',
+    method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=20`,
+    flag=true,
+    triger = true,
+   popupdiv = document.querySelector('.pop_up');
 
-    async function gettingdata(){
+    async function gettingdata(){             // Main updating 
         await fetch(method,{method:'GET'})
     .then(res => res.json())
     .then(data => {
@@ -15,9 +18,9 @@ let images = [],
     .catch(err => console.log(err))
     }
 
-    gettingdata()
+    gettingdata()  
 
-    function imageshow(datas){
+    function imageshow(datas){      //slider images
       datas.forEach(element => {
         image_scroll.innerHTML+=`
         <img src="${!element.image ? 'No image':element.image}">
@@ -28,15 +31,26 @@ let images = [],
 
     let main_cart = document.querySelector('.carting')
 
-    function importing(datas){
+    function importing(datas){         //Main cart 
        if(flag) main_cart.innerHTML='';
         datas.forEach(n => {
-            main_cart.innerHTML+=`<div class='relative separate'><img src="${n.image}"> <p class='show_text'>${n.title}</P></div> `
+         
+            let separate = document.createElement('div');
+                separate.className='relative separate';
+            let image = document.createElement('img');image.src=n.image;
+            let para = document.createElement('p');para.className='show_text';
+                para.textContent=n.title;  
+                
+                separate.append(image,para)
+                main_cart.append(separate)
+
+                para.addEventListener('click',()=>{popup(n.id)})
           })
           flag=true;
+          triger=true;
     }
 
-let index = 0;
+let index = 0; //Sliding images
 
    function updatdeimage(){
     images = document.querySelectorAll('.slider img');
@@ -52,29 +66,20 @@ let index = 0;
    }
 
   function previous(){
-    index = (index-1 ) % images.length;
+    if (images.length === 0) return;
+    index = (index-1 +images.length) % images.length;
     scroll_update()
    }
 
-   let catagoru_btn = document.querySelectorAll('.category button');
+   let catagory_btn = document.querySelectorAll('.category button');
 
-   catagoru_btn.forEach(n=>{
-    n.addEventListener('click',()=>{
-        
-        let text = n.textContent.toLowerCase();
-
-        if(text=='all') return gettingdata();
-
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=3618575b5d134e6ea595b94c1c5761fd&number=20&type=${text}`)
-             .then(res => res.json())
-             .then(res =>{importing(res.results);})
-             .catch(err => console.log(err))
-    })
+   catagory_btn.forEach(n=>{
+    n.addEventListener('click',()=>{searchdata(n.textContent)})
    })
 
 let load_more = document.querySelector('.button');
 
-load_more.addEventListener('click',()=>{
+load_more.addEventListener('click',()=>{  //Load more items in cart
     flag=false;
     gettingdata()
 })
@@ -82,12 +87,35 @@ load_more.addEventListener('click',()=>{
 let search= document.querySelector('.searchicon');
 let inp = document.querySelector('.searchinp');
 
-search.addEventListener('click',()=>{
-    
-  fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=3618575b5d134e6ea595b94c1c5761fd&query=${inp.value.trim()}`)
-  .then(res => res.json())
-  .then(data => {importing(data.results);})
-  .catch(err => console.log(err))
-})
+search.addEventListener('click',()=>{searchdata(triger=false,inp.value.trim())}) // search inpt
  
-   
+  function searchdata(data){  // search data and catagory data searchig
+    
+
+    if(data=='all') return gettingdata();
+
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}${triger ? `&number=20&type=${data}`:`&query=${inp.value.trim()}` }`)
+         .then(res => res.json())
+         .then(res =>{importing(res.results);})
+         .catch(err => console.log(err))
+  } 
+
+  let imgpop = document.querySelector('.popimg'),
+      title = document.querySelector('.title'),
+      meal = document.querySelector('.mealtype');
+
+async function popup(id){   // pop up data fetching data base
+ await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`)
+  .then(res => res.json())
+  .then(datas => {
+    imgpop.src=datas.image;
+    title.innerHTML=datas.title;
+    meal.innerHTML= meal ? 'Vegetarian' : 'Non-vegetarian';
+    popupdiv.classList.add('display');
+  })
+  .catch(err => console.log(err))
+}
+
+function toggle(){
+ popupdiv.classList.toggle('display');
+}

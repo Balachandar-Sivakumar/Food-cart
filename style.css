@@ -117,4 +117,51 @@ div .show_text:hover{
 .button:hover {
     background-color: #0056b3;
   }
+
+.pop_up{
+    position: fixed;
+    top: 2000px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 0, 0,0.7);
+    height: 100%;
+    width: 100%;
+    transition: .5s ease;
+}
+
+.mini_popup{
+    padding: 2rem;
+    background-color: white;
+    
+}
+
+.mini_pop_up label{
+    display: block;
+    color: white;
+   padding: .5rem 0;
+}
+label p{
+    color: white;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.mini_pop_up img{
+    border-radius: 10px;
+}
+
+xmark{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.display{
+    top: 0;
+}
   
