@@ -4,15 +4,18 @@ let images = [],
     method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=20`,
     flag=true,
     triger = true,
-   popupdiv = document.querySelector('.pop_up');
+   popupdiv = document.querySelector('.pop_up'),
+   loader = document.querySelector('.loadercontainer');
 
     async function gettingdata(){             // Main updating 
         await fetch(method,{method:'GET'})
     .then(res => res.json())
     .then(data => {
+        loading()
         imageshow(data.recipes);
         importing(data.recipes);
         updatdeimage()
+        
     }
     )
     .catch(err => console.log(err))
@@ -96,7 +99,7 @@ search.addEventListener('click',()=>{searchdata(triger=false,inp.value.trim())})
 
     fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}${triger ? `&number=20&type=${data}`:`&query=${inp.value.trim()}` }`)
          .then(res => res.json())
-         .then(res =>{importing(res.results);})
+         .then(res =>{loading(),importing(res.results);})
          .catch(err => console.log(err))
   } 
 
@@ -119,3 +122,11 @@ async function popup(id){   // pop up data fetching data base
 function toggle(){
  popupdiv.classList.toggle('display');
 }
+
+function loading(){
+  loader.style.display='flex'
+  setTimeout(()=>{
+    loader.style.display='none'
+  },3000)
+}
+
