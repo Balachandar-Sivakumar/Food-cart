@@ -7,11 +7,12 @@ let images = [],
    popupdiv = document.querySelector('.pop_up'),
    loader = document.querySelector('.loadercontainer');
 
-    async function gettingdata(){             // Main updating 
+    async function gettingdata(){ 
+      loading()            // Main updating 
         await fetch(method,{method:'GET'})
     .then(res => res.json())
     .then(data => {
-        loading()
+       
         imageshow(data.recipes);
         importing(data.recipes);
         updatdeimage()
@@ -96,7 +97,7 @@ search.addEventListener('click',()=>{searchdata(triger=false,inp.value.trim())})
     
 
     if(data=='all') return gettingdata();
-
+    loading()
     fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}${triger ? `&number=20&type=${data}`:`&query=${inp.value.trim()}` }`)
          .then(res => res.json())
          .then(res =>{loading(),importing(res.results);})
