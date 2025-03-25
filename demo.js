@@ -1,7 +1,7 @@
 let image_scroll = document.getElementById('slider');
 let images = [], 
     api_key = '23fbef0eab1649fa81d0a7cb71ddef9a',
-    method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=21`,
+    method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=20`,
     flag = true, triger = true, catagriy = ['All'],
     popupdiv = document.querySelector('.pop_up'),
     loader = document.querySelector('.loadercontainer'),
