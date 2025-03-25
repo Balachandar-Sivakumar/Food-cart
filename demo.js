@@ -1,7 +1,7 @@
 let image_scroll = document.getElementById('slider');
 let images = [], 
     api_key = '23fbef0eab1649fa81d0a7cb71ddef9a',
-    method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=100`,
+    method = `https://api.spoonacular.com/recipes/random?apiKey=${api_key}&number=21`,
     flag = true, triger = true, catagriy = ['All'],
     popupdiv = document.querySelector('.pop_up'),
     loader = document.querySelector('.loadercontainer'),
@@ -48,7 +48,7 @@ function importing(datas) {
         main_cart.append(separate);
         para.addEventListener('click', () => popup(n.id));
 
-        if (n.cuisines) catagriy.push(...n.cuisines.filter(x => x));
+        if (n.cuisines) catagriy=[...catagriy,...n.cuisines];
     });
     flag = triger = true;
     catagriy = [...new Set(catagriy)];
